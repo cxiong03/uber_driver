@@ -18,8 +18,10 @@ router.post('/drivers', function(req, res, next) {
 
 // update a driver in the db
 router.put('/drivers/:id', function(req, res, next) {
-    Driver.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function(driver) {
-        res.send(driver);
+    Driver.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function() {
+        Driver.findOne({ _id: req.params.id }).then(function(driver) {
+            res.send(driver);
+        });
     });
 });
 
