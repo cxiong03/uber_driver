@@ -20,6 +20,6 @@ const DriverSchema = new Schema({
 });
 
 // pass our collection through our database via the Driver model
-const Driver = mongoose.model('driver', DriverSchema);
+const Driver = mongoose.model('Driver', DriverSchema);
 
 module.exports = Driver;

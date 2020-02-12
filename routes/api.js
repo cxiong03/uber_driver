@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const Driver = require('../models/drivers');
 
 // get a list of drivers form the db
-router.get('/drivers', function(req, res) {
-    res.send({ type: 'GET' });
+router.get('/', function(req, res) {
+    res.send({ type: 'GET'});
 });
 
 // add a new driver
 router.post('/drivers', function(req, res) {
-    console.log(req.body);
-    res.send({ 
-        type: 'POST',
-        name: req.body.name,
-        rate: req.body.rate
-     });
+    // will create and save new driver to db then wait send back new driver to client
+    Driver.create(req.body).then(function(driver){
+        res.send(driver);
+    });
 });
 
 // update a driver in the db
