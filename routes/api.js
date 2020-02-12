@@ -18,7 +18,9 @@ router.post('/drivers', function(req, res, next) {
 
 // update a driver in the db
 router.put('/drivers/:id', function(req, res, next) {
-    res.send({ type: 'PUT' });
+    Driver.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function(driver) {
+        res.send(driver);
+    });
 });
 
 // delete a driver from the db
