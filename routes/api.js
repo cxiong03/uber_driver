@@ -23,7 +23,9 @@ router.put('/drivers/:id', function(req, res, next) {
 
 // delete a driver from the db
 router.delete('/drivers/:id', function(req, res, next) {
-    res.send({ type: 'DELETE' });
+    Driver.findByIdAndRemove({ _id: req.params.id }).then(function(driver){
+        res.send(driver);
+    });
 });
 
 // exporting the file
